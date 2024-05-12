@@ -75,6 +75,8 @@ var hasLeftLetter = false;
 
 
 function drawPath(points, color) {
+    document.getElementById('output').innerHTML = foundPaths.length + " of 6 theme words found.";
+
     var lastSplit = null
     ctx.fillStyle = color;
     for (const point of points) {
@@ -154,6 +156,9 @@ function draw() {
         if (isValidPath(selectedPoints)) {
             foundPaths.push(selectedPoints)
             foundPoints = foundPoints.concat(selectedPoints)
+            if (foundPaths.length == validPaths.length) {
+                alert("Congratulations! No doubt you didn't need a single hint from me. I mean maybe you did, I can't predict it one way or another in advance. There's no shame in a hint. Anyways, I just hope you know how fun it was to make this puzzle for you, because it served as a reminder of all the funny moments we've talked about in the last year. I hope you have a wonderful mother's day, and that we have many more such moments in the year to come!")
+            }
         }
         selectedPoints = []
     }
