@@ -55,8 +55,9 @@ var mouseX = 0
 var mouseY = 0
 
 function mousePosition(event) {
-    mouseX = event.clientX;
-    mouseY = event.clientY;
+    var rect = c.getBoundingClientRect();
+    mouseX = event.clientX-rect.left;
+    mouseY = event.clientY-rect.top;
 }
 
 var mouseDown = 0;
@@ -124,8 +125,8 @@ function draw() {
         x = letterStart.x;
         y += letterGap;
     }
-
-    if (mouseDown) {
+    console.log(mouseX-letterStart.x, mouseY-letterStart.y);
+    if (mouseDown && mouseX >= letterStart.x && (mouseY >= letterStart.y-20) && mouseX < letterStart.x+6.5*letterGap) {
         const letterX = Math.round((mouseX-letterStart.x) / letterGap)
         const letterY = Math.round((mouseY-letterStart.y) / letterGap)
         const coordinates = letterX+"."+letterY
